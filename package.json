@@ -11,6 +11,14 @@
     "start": "node dist/index.js",
     "prepublishOnly": "npm run build"
   },
+  "homepage": "https://github.com/azlanibrahim1/use-me/#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/azlibdar/use-me.git"
+  },
+  "bugs": {
+    "url": "https://github.com/azlibdar/use-me/issues"
+  },
   "keywords": [
     "react",
     "hooks",
