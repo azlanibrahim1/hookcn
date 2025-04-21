@@ -126,8 +126,34 @@ const handleAdd = async (hookName: string) => {
   }
 };
 
+/**
+ * List Hooks
+ */
+const handleList = async () => {
+  const config = getConfig();
+  const registryUrl = config.registryUrl || DEFAULT_REGISTRY_URL;
+
+  try {
+    const response = await axios.get(registryUrl);
+    const hooks: { name: string }[] = response.data.sort((a: any, b: any) => a.name.localeCompare(b.name));
+
+    console.log(chalk.blue("Available Hooks:"));
+    hooks.forEach((hook) => {
+      const userHookPath = path.join(config.destination, `${hook.name}.ts`);
+      if (fs.existsSync(userHookPath)) {
+        console.log(chalk.green(`- ${hook.name} (Installed)`));
+      } else {
+        console.log(chalk.white(`- ${hook.name}`));
+      }
+    });
+  } catch (error) {
+    console.error(chalk.red("Unable to fetch hooks list. Please check your internet connection."));
+  }
+};
+
 program.name("use-cli").description("A CLI tool for copying React hooks into your project");
 program.command("init").description("Initialize config file for your hooks").action(handleInit);
 program.command("add <hookName>").description("Add a specific hook to your project").action(handleAdd);
+program.command("list").description("List all available hooks").action(handleList);
 
 program.parse(process.argv);
