@@ -41,23 +41,27 @@ const getConfig = (): Config => {
  * Initialize configuration
  */
 const handleInit = async () => {
-  if (fs.existsSync(CONFIG_PATH)) {
-    console.log(chalk.yellow(`Config file '${CONFIG_FILE_NAME}' is already exists. No changes made.`));
-    return;
+  try {
+    if (fs.existsSync(CONFIG_PATH)) {
+      console.log(chalk.yellow(`Config file '${CONFIG_FILE_NAME}' already exists. No changes made.`));
+      return;
+    }
+
+    const answers = await inquirer.prompt([
+      {
+        type: "input",
+        name: "destination",
+        message: "Set default installation path for hooks:",
+        default: DEFAULT_INSTALLATION_PATH,
+        filter: (input) => input.trim() || DEFAULT_INSTALLATION_PATH,
+      },
+    ]);
+
+    await fs.writeJson(CONFIG_PATH, answers, { spaces: 2 });
+    console.log(chalk.green(`✓ Configuration saved to ${CONFIG_PATH}`));
+  } catch (error) {
+    console.error(chalk.red(`Error creating configuration file: ${error}`));
   }
-
-  const answers = await inquirer.prompt([
-    {
-      type: "input",
-      name: "destination",
-      message: "Set default installation path for hooks:",
-      default: DEFAULT_INSTALLATION_PATH,
-      filter: (input) => input.trim() || DEFAULT_INSTALLATION_PATH,
-    },
-  ]);
-
-  fs.writeJsonSync(CONFIG_PATH, answers, { spaces: 2 });
-  console.log(chalk.green(`✓ Configuration saved to ${CONFIG_PATH}`));
 };
 
 /**
@@ -117,7 +121,7 @@ const handleAdd = async (hookName: string) => {
       }
     }
 
-    fs.writeFileSync(hookDestPath, hookResponse.data);
+    await fs.writeFile(hookDestPath, hookResponse.data);
     console.log(chalk.green(`✓ Hook "${hookName}" copied successfully to ${config.destination}`));
     console.log(chalk.gray(`→ Learn about ${hookName}: ${hookDoc}`));
   } catch (error) {
