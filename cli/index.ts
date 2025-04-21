@@ -20,7 +20,7 @@ const DOCS_BASE_URL = "https://azlanibrahim.gitbook.io/hookcn/";
 const REGISTRY_URL = "https://cdn.jsdelivr.net/gh/azlanibrahim1/hookcn@main/registry.json";
 const CONFIG_FILE_NAME = "hooks.json";
 const CONFIG_PATH = path.resolve(process.cwd(), CONFIG_FILE_NAME);
-const DEFAULT_INSTALLATION_PATH = "src/hook/";
+const DEFAULT_INSTALLATION_PATH = "src/hooks/";
 
 /**
  * Get Config
@@ -43,6 +43,7 @@ const getConfig = (): Config => {
 const handleInit = async () => {
   if (fs.existsSync(CONFIG_PATH)) {
     console.log(chalk.yellow(`Config file '${CONFIG_FILE_NAME}' is already exists. No changes made.`));
+    return;
   }
 
   const answers = await inquirer.prompt([
@@ -51,7 +52,7 @@ const handleInit = async () => {
       name: "destination",
       message: "Set default installation path for hooks:",
       default: DEFAULT_INSTALLATION_PATH,
-      validate: (input) => input.trim() !== "" || "Path cannot be empty!",
+      filter: (input) => input.trim() || DEFAULT_INSTALLATION_PATH,
     },
   ]);
 
