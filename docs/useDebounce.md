@@ -5,7 +5,7 @@ Delays updating a value until after a specified delay period.
 ### Installation
 
 ```bash
-npx use-cli add useDebounce
+npx use-me add useDebounce
 ```
 
 ### Description

@@ -5,7 +5,7 @@ Synchronizes a state value with sessionStorage.
 ### Installation
 
 ```bash
-npx use-cli add useSessionStorage
+npx use-me add useSessionStorage
 ```
 
 ### Description

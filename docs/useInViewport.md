@@ -5,7 +5,7 @@ Detects when an element is visible within the viewport.
 ### Installation
 
 ```bash
-npx use-cli add useInViewport
+npx use-me add useInViewport
 ```
 
 ### Description

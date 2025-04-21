@@ -5,7 +5,7 @@ Locks or unlocks scrolling on the document body.
 ### Installation
 
 ```bash
-npx use-cli add useLockScroll
+npx use-me add useLockScroll
 ```
 
 ### Description

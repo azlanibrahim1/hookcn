@@ -5,7 +5,7 @@ Copies a given string to the user's clipboard.
 ### Installation
 
 ```bash
-npx use-cli add useCopyToClipboard
+npx use-me add useCopyToClipboard
 ```
 
 ### Description

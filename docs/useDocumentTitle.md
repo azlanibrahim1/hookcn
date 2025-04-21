@@ -5,7 +5,7 @@ Sets the document's title to the provided string.
 ### Installation
 
 ```bash
-npx use-cli add useDocumentTitle
+npx use-me add useDocumentTitle
 ```
 
 ### Description

@@ -5,7 +5,7 @@ A one line description of the hook.
 ### Installation
 
 ```bash
-npx use-cli add useHookName
+npx use-me add useHookName
 ```
 
 ### Description

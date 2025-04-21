@@ -5,7 +5,7 @@ Synchronizes a state value with localStorage.
 ### Installation
 
 ```bash
-npx use-cli add useLocalStorage
+npx use-me add useLocalStorage
 ```
 
 ### Description

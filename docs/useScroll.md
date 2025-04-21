@@ -5,7 +5,7 @@ Tracks scroll position and provides scroll-related info about the page.
 ### Installation
 
 ```bash
-npx use-cli add useScroll
+npx use-me add useScroll
 ```
 
 ### Description

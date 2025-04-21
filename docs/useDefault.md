@@ -5,7 +5,7 @@ Returns a fallback value if the current state is null or undefined.
 ### Installation
 
 ```bash
-npx use-cli add useDefault
+npx use-me add useDefault
 ```
 
 ### Description

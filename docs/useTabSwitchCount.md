@@ -5,7 +5,7 @@ Counts how many times the user has switched away from the browser tab.
 ### Installation
 
 ```bash
-npx use-cli add useTabSwitchCount
+npx use-me add useTabSwitchCount
 ```
 
 ### Description

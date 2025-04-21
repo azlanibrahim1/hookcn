@@ -9,8 +9,6 @@ import axios from "axios";
 
 interface Config {
   destination: string;
-  registryUrl?: string;
-  docsBaseUrl?: string;
 }
 
 interface Hook {
@@ -18,8 +16,8 @@ interface Hook {
   source: string;
 }
 
-const DEFAULT_DOCS_BASE_URL = "https://azlanibrahim.gitbook.io/use-cli/";
-const DEFAULT_REGISTRY_URL = "https://cdn.jsdelivr.net/gh/azlanibrahim1/use-cli@main/registry.json";
+const DOCS_BASE_URL = "https://azlanibrahim.gitbook.io/use-me/";
+const REGISTRY_URL = "https://cdn.jsdelivr.net/gh/azlanibrahim1/use-me@main/registry.json";
 const CONFIG_FILE_NAME = "hooks.json";
 const CONFIG_PATH = path.resolve(process.cwd(), CONFIG_FILE_NAME);
 const DEFAULT_INSTALLATION_PATH = "src/hook/";
@@ -71,13 +69,11 @@ const handleAdd = async (hookName: string) => {
   }
 
   const config = getConfig();
-  const registryUrl = config.registryUrl || DEFAULT_REGISTRY_URL;
-  const docsUrl = config.docsBaseUrl || DEFAULT_DOCS_BASE_URL;
-  const hookDoc = docsUrl + hookName;
+  const hookDoc = DOCS_BASE_URL + hookName;
 
   try {
     console.log(chalk.blue("✓ Checking registry."));
-    const registryResponse = await axios.get(registryUrl, { timeout: 10000 });
+    const registryResponse = await axios.get(REGISTRY_URL, { timeout: 10000 });
     const hooks = registryResponse.data;
     const hook = hooks.find((h: Hook) => h.name === hookName);
 
@@ -131,10 +127,9 @@ const handleAdd = async (hookName: string) => {
  */
 const handleList = async () => {
   const config = getConfig();
-  const registryUrl = config.registryUrl || DEFAULT_REGISTRY_URL;
 
   try {
-    const response = await axios.get(registryUrl);
+    const response = await axios.get(REGISTRY_URL);
     const hooks: { name: string }[] = response.data.sort((a: any, b: any) => a.name.localeCompare(b.name));
 
     console.log(chalk.blue("Available Hooks:"));
@@ -151,7 +146,7 @@ const handleList = async () => {
   }
 };
 
-program.name("use-cli").description("A CLI tool for copying React hooks into your project");
+program.name("use-me").description("A CLI tool that instantly copies React hooks into your codebase");
 program.command("init").description("Initialize config file for your hooks").action(handleInit);
 program.command("add <hookName>").description("Add a specific hook to your project").action(handleAdd);
 program.command("list").description("List all available hooks").action(handleList);
