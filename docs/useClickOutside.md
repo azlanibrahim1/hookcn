@@ -5,7 +5,7 @@ Detects when a click or tap occurs outside a referenced element and triggers a c
 ### Installation
 
 ```bash
-npx use-me add useClickOutside
+npx hooksy add useClickOutside
 ```
 
 ### Description

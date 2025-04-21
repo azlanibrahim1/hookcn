@@ -16,8 +16,8 @@ interface Hook {
   source: string;
 }
 
-const DOCS_BASE_URL = "https://azlanibrahim.gitbook.io/use-me/";
-const REGISTRY_URL = "https://cdn.jsdelivr.net/gh/azlanibrahim1/use-me@main/registry.json";
+const DOCS_BASE_URL = "https://azlanibrahim.gitbook.io/hooksy/";
+const REGISTRY_URL = "https://cdn.jsdelivr.net/gh/azlanibrahim1/hooksy@main/registry.json";
 const CONFIG_FILE_NAME = "hooks.json";
 const CONFIG_PATH = path.resolve(process.cwd(), CONFIG_FILE_NAME);
 const DEFAULT_INSTALLATION_PATH = "src/hook/";
@@ -64,7 +64,7 @@ const handleInit = async () => {
  */
 const handleAdd = async (hookName: string) => {
   if (!hookName || hookName.trim() === "") {
-    console.log(chalk.red("Hook name is required. Usage: hookcli add <hook-name>"));
+    console.log(chalk.red("Hook name is required. Usage: hooksy add <hook-name>"));
     return;
   }
 
@@ -78,7 +78,7 @@ const handleAdd = async (hookName: string) => {
     const hook = hooks.find((h: Hook) => h.name === hookName);
 
     if (!hook) {
-      console.log(chalk.red(`Hook "${hookName}" is not available. Use 'hookcli list' to see available hooks.`));
+      console.log(chalk.red(`Hook "${hookName}" is not available. Use 'hooksy list' to see available hooks.`));
       return;
     }
 
@@ -87,7 +87,7 @@ const handleAdd = async (hookName: string) => {
 
     console.log(chalk.blue(`✓ Copying ${hookName}`));
 
-    const hookUrl = `https://cdn.jsdelivr.net/gh/azlanibrahim1/use-me@main/${hookRelativeUrl}`;
+    const hookUrl = `https://cdn.jsdelivr.net/gh/azlanibrahim1/hooksy@main/${hookRelativeUrl}`;
 
     const hookResponse = await axios.get(hookUrl, { timeout: 10000 });
 
@@ -148,7 +148,7 @@ const handleList = async () => {
   }
 };
 
-program.name("use-me").description("A CLI tool that instantly copies React hooks into your codebase");
+program.name("hooksy").description("A CLI tool that instantly copies React hooks into your codebase");
 program.command("init").description("Initialize config file for your hooks").action(handleInit);
 program.command("add <hookName>").description("Add a specific hook to your project").action(handleAdd);
 program.command("list").description("List all available hooks").action(handleList);

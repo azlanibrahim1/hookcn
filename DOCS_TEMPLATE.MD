@@ -5,7 +5,7 @@ A one line description of the hook.
 ### Installation
 
 ```bash
-npx use-me add useHookName
+npx hooksy add useHookName
 ```
 
 ### Description

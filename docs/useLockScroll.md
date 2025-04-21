@@ -5,7 +5,7 @@ Locks or unlocks scrolling on the document body.
 ### Installation
 
 ```bash
-npx use-me add useLockScroll
+npx hooksy add useLockScroll
 ```
 
 ### Description

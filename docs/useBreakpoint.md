@@ -5,7 +5,7 @@ Detects if the current screen size matches mobile, tablet, or desktop breakpoint
 ### Installation
 
 ```bash
-npx use-me add useBreakpoint
+npx hooksy add useBreakpoint
 ```
 
 ### Description

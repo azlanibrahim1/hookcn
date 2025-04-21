@@ -5,7 +5,7 @@ Counts how many times the user has switched away from the browser tab.
 ### Installation
 
 ```bash
-npx use-me add useTabSwitchCount
+npx hooksy add useTabSwitchCount
 ```
 
 ### Description

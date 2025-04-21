@@ -5,7 +5,7 @@ Tracks scroll position and provides scroll-related info about the page.
 ### Installation
 
 ```bash
-npx use-me add useScroll
+npx hooksy add useScroll
 ```
 
 ### Description

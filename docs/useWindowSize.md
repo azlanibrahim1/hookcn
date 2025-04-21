@@ -5,7 +5,7 @@ Tracks the current window size (width and height) and updates on resize.
 ### Installation
 
 ```bash
-npx use-me add useWindowSize
+npx hooksy add useWindowSize
 ```
 
 ### Description

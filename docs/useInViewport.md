@@ -5,7 +5,7 @@ Detects when an element is visible within the viewport.
 ### Installation
 
 ```bash
-npx use-me add useInViewport
+npx hooksy add useInViewport
 ```
 
 ### Description

@@ -1,12 +1,12 @@
 <div align="center">
 
-# use-me — all your hooks in one command
+# hooksy — All your hooks in one command
 
 A CLI tool that instantly copies React hooks into your codebase.
 
-![npm version](https://img.shields.io/npm/v/use-me.svg)
-![downloads](https://img.shields.io/npm/dm/use-me)
-![license](https://img.shields.io/npm/l/use-me)
+![npm version](https://img.shields.io/npm/v/hooksy.svg)
+![downloads](https://img.shields.io/npm/dm/hooksy)
+![license](https://img.shields.io/npm/l/hooksy)
 
 <br />
 
@@ -14,7 +14,7 @@ A CLI tool that instantly copies React hooks into your codebase.
 
 </div>
 
-> **use-me** started as a personal tool. Now it’s open for everyone. It lets you copy TypeScript React hooks directly into your codebase — no dependencies, full ownership.
+> **hooksy** started as a personal tool. Now it’s open for everyone. It lets you copy TypeScript React hooks directly into your codebase — no dependencies, full ownership.
 
 <br>
 
@@ -23,15 +23,18 @@ A CLI tool that instantly copies React hooks into your codebase.
 Install the CLI globally:
 
 ```bash
-npm install -g use-me
+npm install -g hooksy
 ```
+
+> [!TIP]
+> You can then run commands using `hooksy`, `hksy`, or `hookcn`.
 
 ## ⚙️ Setup
 
 ### Step 1: Initialize the Config
 
 ```bash
-npx use-me init
+npx hooksy init
 ```
 
 This creates a `hooks.json` file at your project root:
@@ -49,13 +52,13 @@ This tells the CLI where to place downloaded hooks. You can update it anytime.
 List available hooks from the registry:
 
 ```bash
-npx use-me list
+npx hooksy list
 ```
 
 Install a hook by name:
 
 ```bash
-npx use-me add <hook-name>
+npx hooksy add <hook-name>
 ```
 
 The hook will be copied into the directory defined in `hooks.json` (default: `src/hooks/`).
@@ -66,7 +69,7 @@ The hook will be copied into the directory defined in `hooks.json` (default: `sr
 
 Every hook comes with a markdown file inside the `docs/` folder.
 
-You can also explore all available hooks and their documentation online on [Gitbook](https://azlanibrahim.gitbook.io/use-me/).
+You can also explore all available hooks and their documentation online on [Gitbook](https://azlanibrahim.gitbook.io/hooksy/).
 
 ## 🤝 Contributing
 
