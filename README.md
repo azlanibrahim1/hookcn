@@ -10,7 +10,8 @@ A CLI tool that instantly copies React hooks into your codebase.
 
 <br />
 
-![Cover Image]()
+![Cover Image](https://github.com/user-attachments/assets/f59f8103-d669-4478-9505-97566d424aad)
+
 
 </div>
 
