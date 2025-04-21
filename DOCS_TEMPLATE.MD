@@ -1,4 +1,4 @@
-# useHooName
+# useHookName
 
 A one line description of the hook.
 
