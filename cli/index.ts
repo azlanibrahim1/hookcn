@@ -29,7 +29,7 @@ const getConfig = (): Config => {
   if (!fs.existsSync(CONFIG_PATH)) {
     console.log(chalk.yellow(`Configuration file not found. Creating one...`));
     fs.writeJsonSync(CONFIG_PATH, { destination: DEFAULT_INSTALLATION_PATH }, { spaces: 2 });
-    console.log(chalk.green(`Default configuration created at ${CONFIG_PATH}`));
+    console.log(chalk.green(`✓ Default configuration created at ${CONFIG_PATH}`));
     return {
       destination: DEFAULT_INSTALLATION_PATH,
     };
@@ -56,7 +56,7 @@ const handleInit = async () => {
   ]);
 
   fs.writeJsonSync(CONFIG_PATH, answers, { spaces: 2 });
-  console.log(chalk.green(`Configuration saved to ${CONFIG_PATH}`));
+  console.log(chalk.green(`✓ Configuration saved to ${CONFIG_PATH}`));
 };
 
 /**
@@ -117,8 +117,8 @@ const handleAdd = async (hookName: string) => {
     }
 
     fs.writeFileSync(hookDestPath, hookResponse.data);
-    console.log(chalk.green(`Hook "${hookName}" copied successfully to ${config.destination}.`));
-    console.log(chalk.gray(`Learn about ${hookName}: ${hookDoc}`));
+    console.log(chalk.green(`✓ Hook "${hookName}" copied successfully to ${config.destination}`));
+    console.log(chalk.gray(`→ Learn about ${hookName}: ${hookDoc}`));
   } catch (error) {
     console.log(chalk.red(`Failed to fetch hook "${hookName}". Please check the hook name or your internet connection.`));
   }
