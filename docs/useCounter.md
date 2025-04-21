@@ -5,7 +5,7 @@ Manages a numeric counter with optional step, min, and max boundaries.
 ### Installation
 
 ```bash
-npx hooksy add useCounter
+npx hookcn add useCounter
 ```
 
 ### Description

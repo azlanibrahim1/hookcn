@@ -5,7 +5,7 @@ Manages light, dark, and system theme preferences with support for persistence a
 ### Installation
 
 ```bash
-npx hooksy add useTheme
+npx hookcn add useTheme
 ```
 
 ### Description

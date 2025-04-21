@@ -5,7 +5,7 @@ Delays updating a value until after a specified delay period.
 ### Installation
 
 ```bash
-npx hooksy add useDebounce
+npx hookcn add useDebounce
 ```
 
 ### Description

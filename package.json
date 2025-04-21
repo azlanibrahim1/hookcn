@@ -1,32 +1,30 @@
 {
-  "name": "hooksy",
+  "name": "hookcn",
   "version": "1.0.0",
   "description": "A CLI tool that instantly copies React hooks into your codebase",
   "main": "dist/index.js",
   "bin": {
-    "hooksy": "./dist/index.js",
-    "hksy": "./dist/index.js",
-    "hookcn": "./dist/index.js"
+    "hookcn": "./dist/index.js",
+    "hcn": "./dist/index.js",
+    "use-hook-cli": "./dist/index.js"
   },
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
     "prepublishOnly": "npm run build"
   },
-  "homepage": "https://github.com/azlanibrahim1/hooksy/#readme",
+  "homepage": "https://github.com/azlanibrahim1/hookcn/#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/azlanibrahim1/hooksy.git"
+    "url": "git+https://github.com/azlanibrahim1/hookcn.git"
   },
   "bugs": {
-    "url": "https://github.com/azlanibrahim1/hooksy/issues"
+    "url": "https://github.com/azlanibrahim1/hookcn/issues"
   },
   "keywords": [
     "react",
     "hooks",
     "cli",
-    "hooksy",
-    "hooksy-cli",
     "hookcn",
     "hookscn",
     "typescript",

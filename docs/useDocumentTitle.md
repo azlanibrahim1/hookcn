@@ -5,7 +5,7 @@ Sets the document's title to the provided string.
 ### Installation
 
 ```bash
-npx hooksy add useDocumentTitle
+npx hookcn add useDocumentTitle
 ```
 
 ### Description

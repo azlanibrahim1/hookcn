@@ -5,7 +5,7 @@ Synchronizes a state value with localStorage.
 ### Installation
 
 ```bash
-npx hooksy add useLocalStorage
+npx hookcn add useLocalStorage
 ```
 
 ### Description

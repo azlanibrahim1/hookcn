@@ -5,7 +5,7 @@ Returns a fallback value if the current state is null or undefined.
 ### Installation
 
 ```bash
-npx hooksy add useDefault
+npx hookcn add useDefault
 ```
 
 ### Description

@@ -5,7 +5,7 @@ Tracks whether the browser is currently online or offline.
 ### Installation
 
 ```bash
-npx hooksy add useOnline
+npx hookcn add useOnline
 ```
 
 ### Description

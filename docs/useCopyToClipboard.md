@@ -5,7 +5,7 @@ Copies a given string to the user's clipboard.
 ### Installation
 
 ```bash
-npx hooksy add useCopyToClipboard
+npx hookcn add useCopyToClipboard
 ```
 
 ### Description

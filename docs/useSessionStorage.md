@@ -5,7 +5,7 @@ Synchronizes a state value with sessionStorage.
 ### Installation
 
 ```bash
-npx hooksy add useSessionStorage
+npx hookcn add useSessionStorage
 ```
 
 ### Description

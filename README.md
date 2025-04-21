@@ -1,12 +1,12 @@
 <div align="center">
 
-# hooksy — All your hooks in one command
+# hookcn — All your hooks in one command
 
 A CLI tool that instantly copies React hooks into your codebase.
 
-![npm version](https://img.shields.io/npm/v/hooksy.svg)
-![downloads](https://img.shields.io/npm/dm/hooksy)
-![license](https://img.shields.io/npm/l/hooksy)
+![npm version](https://img.shields.io/npm/v/hookcn.svg)
+![downloads](https://img.shields.io/npm/dm/hookcn)
+![license](https://img.shields.io/npm/l/hookcn)
 
 <br />
 
@@ -14,7 +14,7 @@ A CLI tool that instantly copies React hooks into your codebase.
 
 </div>
 
-> **hooksy** started as a personal tool. Now it’s open for everyone. It lets you copy TypeScript React hooks directly into your codebase — no dependencies, full ownership.
+> **hookcn** started as a personal tool. Now it’s open for everyone. It lets you copy TypeScript React hooks directly into your codebase — no dependencies, full ownership.
 
 <br>
 
@@ -23,18 +23,18 @@ A CLI tool that instantly copies React hooks into your codebase.
 Install the CLI globally:
 
 ```bash
-npm install -g hooksy
+npm install -g hookcn
 ```
 
 > [!TIP]
-> You can then run commands using `hooksy`, `hksy`, or `hookcn`.
+> You can then run commands using `hookcn`, `hcn`, or `use-hook-cli`.
 
 ## ⚙️ Setup
 
 ### Step 1: Initialize the Config
 
 ```bash
-npx hooksy init
+npx hookcn init
 ```
 
 This creates a `hooks.json` file at your project root:
@@ -52,13 +52,13 @@ This tells the CLI where to place downloaded hooks. You can update it anytime.
 List available hooks from the registry:
 
 ```bash
-npx hooksy list
+npx hookcn list
 ```
 
 Install a hook by name:
 
 ```bash
-npx hooksy add <hook-name>
+npx hookcn add <hook-name>
 ```
 
 The hook will be copied into the directory defined in `hooks.json` (default: `src/hooks/`).
@@ -69,7 +69,7 @@ The hook will be copied into the directory defined in `hooks.json` (default: `sr
 
 Every hook comes with a markdown file inside the `docs/` folder.
 
-You can also explore all available hooks and their documentation online on [Gitbook](https://azlanibrahim.gitbook.io/hooksy/).
+You can also explore all available hooks and their documentation online on [Gitbook](https://azlanibrahim.gitbook.io/hookcn/).
 
 ## 🤝 Contributing
 
