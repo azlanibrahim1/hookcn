@@ -1,23 +1,23 @@
-# useIsInViewport
+# useInViewport
 
 Detects when an element is visible within the viewport.
 
 ### Installation
 
 ```bash
-npx use-cli add useIsInViewport
+npx use-cli add useInViewport
 ```
 
 ### Description
 
-The `useIsInViewport` hook checks if an element is visible in the viewport. You can adjust how much of the element needs to be visible or add a margin around the viewport to control when the element is considered visible.
+The `useInViewport` hook checks if an element is visible in the viewport. You can adjust how much of the element needs to be visible or add a margin around the viewport to control when the element is considered visible.
 
 ### Usage
 
 ```typescript
-import useIsInViewport from "src/hooks/useIsInViewport";
+import useInViewport from "src/hooks/useInViewport";
 //..
-const isVisible = useIsInViewport(ref, 0.1, 0);
+const isInViewport = useInViewport(ref, 0.1, 0);
 ```
 
 ### Parameters
@@ -38,18 +38,18 @@ const isVisible = useIsInViewport(ref, 0.1, 0);
 
 ```typescript
 import { useRef } from "react";
-import useIsInViewport from "src/hooks/useIsInViewport";
+import useInViewport from "src/hooks/useInViewport";
 
 const VisibilityComponent = () => {
   const ref = useRef<HTMLDivElement>(null);
-  const isVisible = useIsInViewport(ref, 0.1, 0);
+  const isInViewport = useInViewport(ref, 0.1, 0);
 
   return (
     <div>
-      <div ref={ref} style={{ height: "200px", background: isVisible ? "lightgreen" : "lightgray" }}>
+      <div ref={ref} style={{ height: "200px", background: isInViewport ? "lightgreen" : "lightgray" }}>
         Scroll to see me!
       </div>
-      <p>{isVisible ? "Element is visible" : "Element is not visible"}</p>
+      <p>{isInViewport ? "Element is visible" : "Element is not visible"}</p>
     </div>
   );
 };

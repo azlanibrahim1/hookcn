@@ -1,7 +1,7 @@
 import { useState, useEffect, RefObject } from "react";
 
 /**
- * useIsInViewport
+ * useInViewport
  *
  * Detects when an element is visible within the viewport.
  *
@@ -14,7 +14,7 @@ import { useState, useEffect, RefObject } from "react";
  *
  * @returns `true` if the element is in the viewport, otherwise `false`.
  */
-function useIsInViewport(ref: RefObject<HTMLElement | null>, threshold: number = 0.1, rootMargin: number = 0): boolean {
+function useInViewport(ref: RefObject<HTMLElement | null>, threshold: number = 0.1, rootMargin: number = 0): boolean {
   const [isInViewport, setIsInViewport] = useState(false);
 
   useEffect(() => {
@@ -42,4 +42,4 @@ function useIsInViewport(ref: RefObject<HTMLElement | null>, threshold: number =
   return isInViewport;
 }
 
-export default useIsInViewport;
+export default useInViewport;
