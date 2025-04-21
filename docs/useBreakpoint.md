@@ -22,11 +22,11 @@ const { isMobileSize, isTabletSize, isDesktopSize } = useBreakpoint();
 
 ### Return Value
 
-| Name            | Type      | Description                                       |
-| --------------- | --------- | ------------------------------------------------- |
-| `isMobileSize`  | `boolean` | true if width is less than 768px.                 |
-| `isTabletSize`  | `boolean` | true if width is between 768px and 1023px.        |
-| `isDesktopSize` | `boolean` | true if width is greater than or equal to 1024px. |
+| Name            | Type      | Description                                         |
+| --------------- | --------- | --------------------------------------------------- |
+| `isMobileSize`  | `boolean` | true if width is less than `768px`.                 |
+| `isTabletSize`  | `boolean` | true if width is between `768px` and `1023px`.      |
+| `isDesktopSize` | `boolean` | true if width is greater than or equal to `1024px`. |
 
 ### Example
 

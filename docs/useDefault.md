@@ -22,10 +22,10 @@ const [value, setValue] = useDefault<string | null>(null, "default");
 
 ### Parameters
 
-| Name           | Type | Default value | Description                                                |
-| -------------- | ---- | ------------- | ---------------------------------------------------------- |
-| `initialValue` | `T`  | -             | The initial state value.                                   |
-| `defaultValue` | `T`  | -             | The fallback value returned if state is null or undefined. |
+| Name           | Type | Default value | Description                                                    |
+| -------------- | ---- | ------------- | -------------------------------------------------------------- |
+| `initialValue` | `T`  | -             | The initial state value.                                       |
+| `defaultValue` | `T`  | -             | The fallback value returned if state is `null` or `undefined`. |
 
 ### Return Value
 

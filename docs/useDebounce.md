@@ -22,10 +22,10 @@ const debouncedValue = useDebounce(inputValue, 500);
 
 ### Parameters
 
-| Name    | Type     | Default value | Description                                                    |
-| ------- | -------- | ------------- | -------------------------------------------------------------- |
-| `value` | `string` | -             | The input value to debounce.                                   |
-| `delay` | `number` | -             | The delay in milliseconds before updating the debounced value. |
+| Name    | Type     | Default value | Description                                                      |
+| ------- | -------- | ------------- | ---------------------------------------------------------------- |
+| `value` | `string` | -             | The input value to debounce.                                     |
+| `delay` | `number` | -             | The `delay` in milliseconds before updating the debounced value. |
 
 ### Return Value
 
