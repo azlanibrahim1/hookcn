@@ -82,10 +82,12 @@ const handleAdd = async (hookName: string) => {
       return;
     }
 
-    const hookUrl = hook.source;
+    const hookRelativeUrl = hook.source;
     const hookDestPath = path.resolve(process.cwd(), config.destination, `${hookName}.ts`);
 
     console.log(chalk.blue(`✓ Copying ${hookName}`));
+
+    const hookUrl = `https://cdn.jsdelivr.net/gh/azlanibrahim1/use-me@main/${hookRelativeUrl}`;
 
     const hookResponse = await axios.get(hookUrl, { timeout: 10000 });
 
