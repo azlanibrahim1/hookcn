@@ -6,6 +6,11 @@ import fs from "fs-extra";
 import chalk from "chalk";
 import inquirer from "inquirer";
 import axios from "axios";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 interface Config {
   destination: string;
@@ -40,29 +45,25 @@ const getConfig = (): Config => {
 /**
  * Initialize configuration
  */
-const handleInit = async () => {
-  try {
-    if (fs.existsSync(CONFIG_PATH)) {
-      console.log(chalk.yellow(`Config file '${CONFIG_FILE_NAME}' already exists. No changes made.`));
-      return;
-    }
-
-    const answers = await inquirer.prompt([
-      {
-        type: "input",
-        name: "destination",
-        message: "Set default installation path for hooks:",
-        default: DEFAULT_INSTALLATION_PATH,
-        filter: (input) => input.trim() || DEFAULT_INSTALLATION_PATH,
-      },
-    ]);
-
-    await fs.writeJson(CONFIG_PATH, answers, { spaces: 2 });
-    console.log(chalk.green(`✓ Configuration saved to ${CONFIG_PATH}`));
-  } catch (error) {
-    console.error(chalk.red(`Error creating configuration file: ${error}`));
+async function handleInit() {
+  const configPath = path.resolve(process.cwd(), CONFIG_FILE_NAME);
+  if (fs.existsSync(configPath)) {
+    console.log(chalk.yellow(`Config file '${CONFIG_FILE_NAME}' already exists. No changes made.`));
+    return;
   }
-};
+
+  const answers = await inquirer.prompt([
+    {
+      type: "input",
+      name: "destination",
+      message: "Set default installation path for hooks:",
+      default: DEFAULT_INSTALLATION_PATH,
+    },
+  ]);
+
+  fs.writeJsonSync(configPath, answers, { spaces: 2 });
+  console.log(chalk.green(`✓ Configuration saved to ${configPath}`));
+}
 
 /**
  * Add Hooks
@@ -121,7 +122,7 @@ const handleAdd = async (hookName: string) => {
       }
     }
 
-    await fs.writeFile(hookDestPath, hookResponse.data);
+    fs.writeFileSync(hookDestPath, hookResponse.data);
     console.log(chalk.green(`✓ Hook "${hookName}" copied successfully to ${config.destination}`));
     console.log(chalk.gray(`→ Learn about ${hookName}: ${hookDoc}`));
   } catch (error) {
