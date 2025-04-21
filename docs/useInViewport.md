@@ -22,11 +22,11 @@ const isInViewport = useInViewport(ref, 0.1, 0);
 
 ### Parameters
 
-| Name         | Type                     | Default value | Description                                         |
-| ------------ | ------------------------ | ------------- | --------------------------------------------------- |
-| `ref`        | `RefObject<HTMLElement>` | -             | The `ref` of the HTML element to observe.           |
-| `threshold`  | `number`                 | `0.1`         | Percentage of the element that needs to be visible. |
-| `rootMargin` | `number`                 | `0`           | Margin around the viewport to consider.             |
+| Name         | Type                             | Default value | Description                                         |
+| ------------ | -------------------------------- | ------------- | --------------------------------------------------- |
+| `ref`        | `RefObject<HTMLElement \| null>` | -             | The `ref` of the HTML element to observe.           |
+| `threshold`  | `number`                         | `0.1`         | Percentage of the element that needs to be visible. |
+| `rootMargin` | `number`                         | `0`           | Margin around the viewport to consider.             |
 
 ### Return Value
 
