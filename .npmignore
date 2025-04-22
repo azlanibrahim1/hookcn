@@ -5,3 +5,7 @@ docs/
 .npmignore
 *.ts
 *.map
+CONTRIBUTING.md
+DOCS_TEMPLATE.md
+registry.json
+.gitbook.yml
