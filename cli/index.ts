@@ -38,19 +38,6 @@ const getConfig = (): Config => {
 };
 
 /**
- * Get Hook by Url
- */
-const getHookByUrl = async (url: string, name: string) => {
-  const hookResponse = await axios.get(url, { timeout: 10000 });
-
-  if (hookResponse.status !== 200) {
-    console.log(chalk.red(`Failed to fetch hook "${name}".`));
-    return;
-  }
-  return hookResponse.data;
-};
-
-/**
  * Initialize configuration
  */
 async function handleInit() {
@@ -93,7 +80,11 @@ const handleAdd = async (hookNames: string[]) => {
 
     const missingHooks = hookNames.filter((name) => !availableHookNames.includes(name));
     if (missingHooks.length > 0) {
-      console.log(chalk.red(`The following hooks are not available: ${missingHooks.join(", ")}`));
+      if (hookNames.length > 1) {
+        console.log(chalk.red(`The following hooks are not available: ${missingHooks.join(", ")}`));
+      } else {
+        console.log(chalk.red(`${missingHooks[0]} is not available. use 'hookcn list' to see available hooks.`));
+      }
       console.log(chalk.red("Operation Aborted!"));
       return;
     }
@@ -139,6 +130,14 @@ const handleAdd = async (hookNames: string[]) => {
       console.log(chalk.green(`✓ Hook "${hookName}" installed successfully to ${config.destination}`));
     }
     console.log(chalk.magentaBright(`✓ Installation complete!`));
+    console.log(" ");
+
+    if (hookNames.length > 1) {
+      console.log(chalk.gray(`→ Documentation: ${DOCS_BASE_URL}`));
+      return;
+    }
+
+    console.log(chalk.gray(`→ Learn about ${hookNames[0]}: ${DOCS_BASE_URL + hookNames[0]}`));
   } catch (error) {
     console.log(chalk.red(`Failed to install hooks. Please check your internet connection.`));
   }
@@ -152,9 +151,9 @@ const handleList = async () => {
 
   try {
     const response = await axios.get(REGISTRY_URL);
+    console.log(chalk.blue("✓ Collecting Available hooks:"));
     const hooks: { name: string }[] = response.data.sort((a: any, b: any) => a.name.localeCompare(b.name));
 
-    console.log(chalk.blue("Available Hooks:"));
     hooks.forEach((hook) => {
       const userHookPath = path.join(config.destination, `${hook.name}.ts`);
       if (fs.existsSync(userHookPath)) {
