@@ -6,11 +6,6 @@ import fs from "fs-extra";
 import chalk from "chalk";
 import inquirer from "inquirer";
 import axios from "axios";
-import { fileURLToPath } from "url";
-import { dirname } from "path";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 
 interface Config {
   destination: string;
@@ -43,6 +38,19 @@ const getConfig = (): Config => {
 };
 
 /**
+ * Get Hook by Url
+ */
+const getHookByUrl = async (url: string, name: string) => {
+  const hookResponse = await axios.get(url, { timeout: 10000 });
+
+  if (hookResponse.status !== 200) {
+    console.log(chalk.red(`Failed to fetch hook "${name}".`));
+    return;
+  }
+  return hookResponse.data;
+};
+
+/**
  * Initialize configuration
  */
 async function handleInit() {
@@ -68,37 +76,25 @@ async function handleInit() {
 /**
  * Add Hooks
  */
-const handleAdd = async (hookName: string) => {
-  if (!hookName || hookName.trim() === "") {
-    console.log(chalk.red("Hook name is required. Usage: hookcn add <hook-name>"));
+const handleAdd = async (hookNames: string[]) => {
+  if (hookNames.length === 0) {
+    console.log(chalk.red("Hook name is required. Usage: hookcn add <hook-name> [...more hookNames (Optional)]"));
     return;
   }
 
   const config = getConfig();
-  const hookDoc = DOCS_BASE_URL + hookName;
 
   try {
     console.log(chalk.blue("✓ Checking registry."));
     const registryResponse = await axios.get(REGISTRY_URL, { timeout: 10000 });
     const hooks = registryResponse.data;
-    const hook = hooks.find((h: Hook) => h.name === hookName);
 
-    if (!hook) {
-      console.log(chalk.red(`Hook "${hookName}" is not available. Use 'hookcn list' to see available hooks.`));
-      return;
-    }
+    const availableHookNames = hooks.map((h: Hook) => h.name);
 
-    const hookRelativeUrl = hook.source;
-    const hookDestPath = path.resolve(process.cwd(), config.destination, `${hookName}.ts`);
-
-    console.log(chalk.blue(`✓ Copying ${hookName}`));
-
-    const hookUrl = `https://cdn.jsdelivr.net/gh/azlanibrahim1/hookcn@main/${hookRelativeUrl}`;
-
-    const hookResponse = await axios.get(hookUrl, { timeout: 10000 });
-
-    if (hookResponse.status !== 200) {
-      console.log(chalk.red(`Failed to fetch hook "${hookName}".`));
+    const missingHooks = hookNames.filter((name) => !availableHookNames.includes(name));
+    if (missingHooks.length > 0) {
+      console.log(chalk.red(`The following hooks are not available: ${missingHooks.join(", ")}`));
+      console.log(chalk.red("Operation Aborted!"));
       return;
     }
 
@@ -106,27 +102,45 @@ const handleAdd = async (hookName: string) => {
       fs.mkdirsSync(config.destination);
     }
 
-    if (fs.existsSync(hookDestPath)) {
-      const { overwrite } = await inquirer.prompt([
-        {
-          type: "confirm",
-          name: "overwrite",
-          message: `Hook "${hookName}.ts" already exists. Overwrite?`,
-          default: false,
-        },
-      ]);
+    for (const hookName of hookNames) {
+      const hook = hooks.find((h: Hook) => hookName === h.name);
 
-      if (!overwrite) {
-        console.log(chalk.yellow(`Skipped overwriting "${hookName}.ts".`));
-        return;
+      const hookDestPath = path.resolve(process.cwd(), config.destination, `${hookName}.ts`);
+
+      // Check if hook already exists
+      if (fs.existsSync(hookDestPath)) {
+        const { overwrite } = await inquirer.prompt([
+          {
+            type: "confirm",
+            name: "overwrite",
+            message: `Hook "${hookName}.ts" already exists. Overwrite?`,
+            default: false,
+          },
+        ]);
+
+        if (!overwrite) {
+          console.log(chalk.yellow(`Skipped overwriting "${hookName}.ts".`));
+          continue;
+        }
       }
-    }
 
-    fs.writeFileSync(hookDestPath, hookResponse.data);
-    console.log(chalk.green(`✓ Hook "${hookName}" copied successfully to ${config.destination}`));
-    console.log(chalk.gray(`→ Learn about ${hookName}: ${hookDoc}`));
+      console.log(chalk.blue(`✓ Installing ${hookName}`));
+
+      const hookUrl = `https://cdn.jsdelivr.net/gh/azlanibrahim1/hookcn@main/${hook.source}`;
+
+      const hookResponse = await axios.get(hookUrl, { timeout: 10000 });
+
+      if (hookResponse.status !== 200) {
+        console.log(chalk.red(`Failed to fetch hook "${hookName}".`));
+        continue;
+      }
+
+      fs.writeFileSync(hookDestPath, hookResponse.data);
+      console.log(chalk.green(`✓ Hook "${hookName}" installed successfully to ${config.destination}`));
+    }
+    console.log(chalk.magentaBright(`✓ Installation complete!`));
   } catch (error) {
-    console.log(chalk.red(`Failed to fetch hook "${hookName}". Please check the hook name or your internet connection.`));
+    console.log(chalk.red(`Failed to install hooks. Please check your internet connection.`));
   }
 };
 
@@ -156,7 +170,7 @@ const handleList = async () => {
 
 program.name("hookcn").description("A CLI tool that instantly copies React hooks into your codebase");
 program.command("init").description("Initialize config file for your hooks").action(handleInit);
-program.command("add <hookName>").description("Add a specific hook to your project").action(handleAdd);
+program.command("add [hookNames...]").description("Add a specific hook to your project").action(handleAdd);
 program.command("list").description("List all available hooks").action(handleList);
 
 program.parse(process.argv);
