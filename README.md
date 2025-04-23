@@ -63,6 +63,13 @@ npx hookcn add <hook-name>
 
 The hook will be copied into the directory defined in `hooks.json` (default: `src/hooks/`).
 
+> [!TIP]
+> Now, you can install multiple hooks using a single command.
+
+```bash
+npx hookcn add useTheme useScroll useCopyToClipboard [more...]
+```
+
 <br>
 
 ## 📚 Documentation
